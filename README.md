@@ -2,7 +2,7 @@
 
 ![image](https://github.com/YaxinF/DSSMReg/blob/main/Fig1.jpg)
 
-DSSMReg is based on DSSM, using scRNA-seq data, transcription factor motif data and ChIP-seq data to infer cell type-specific regulators, and using AUCell to rank the importance of the regulators. 
+DSSMReg is based on DSSM, using scRNA-seq data, transcription factor motif data and ChIP-seq data to infer cell type-specific regulons, and using AUCell to rank the importance of the regulons. 
 
 # Requirements
 ## Python
@@ -40,7 +40,7 @@ Generate the training and testing datasets. `python data_generate.py`
 
 ### Embedding generation
 
-Run the DSSM model to generate the insertion of target genes for transcription factors. `python main.py`
+Run the DSSM model to generate the embedding of target genes and transcription factors. `python main.py`
 
 ### Similarity calculation
 
@@ -52,4 +52,4 @@ Generate regulons based on regulatory score. `python Regulon generation.py`
 
 ### AUCell
 
-Use AUCell to infer the activity of regulatory modules and rank them; the code can be found in AUCell.R.
+Use AUCell to infer the activity of regulons and rank them; the code can be found in AUCell.R.

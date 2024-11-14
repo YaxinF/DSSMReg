@@ -17,15 +17,15 @@ DSSMReg builds upon DSSM by utilizing scRNA-seq data, transcription factor motif
 * AUCell(1.16.0)
 * GSEABase(1.56.0)
 # Usage
-Here is a step-by-step guide on how to use DSSMReg:
+Here is a step-by-step guide on how to use DSSMReg.
 
 ### Expression feature vector generation
 
-Users are required to execute the Autoencoder.py script to generate gene expression feature vectors. This script takes a gene expression  matrix data as input, generates gene expression feature vectors, and stores them in the gene_exp.csv file.
+Users need to execute the autoencoder.py script to generate gene expression feature vectors. This script inputs gene expression matrix data, creates gene expression feature vectors, and stores them in the gene_exp.csv file. 
 
 `python autoencoder.py <input_data_directory> <output_data_directory>`
 
-The size of the gene expression matrix is C x N, where C represents the number of cells and N represents the number of genes. The format of  expression matrix is as follows:
+The size of the gene expression matrix is C x N, where C represents the number of cells and N represents the number of genes. The format of the expression matrix is as follows. 
 
             HSPC_025     HSPC_031      HSPC_008    ...    HSPC_026
     CLEC1B  0            0             1.172368    ...    0
@@ -35,7 +35,7 @@ The size of the gene expression matrix is C x N, where C represents the number o
 
 ### Motif feature vector generation
 
-Similar to the previous step, Users are required to execute the Autoencoder.py script to generate motif feature vectors for genes. This script takes a gene motif score matrix file as input, generates motif feature vectors for target genes and stores them in the motif_50.csv file.
+Similar to the previous step, Users need to execute the autoencoder.py script to generate motif feature vectors for genes. This script takes a gene motif score matrix file as input, generates motif feature vectors for target genes and stores them in the motif_50.csv file. 
 
 `python autoencoder.py <input_data_directory> <output_data_directory>`
 
@@ -47,7 +47,7 @@ The size of the gene motif score matrix is M x N, where M represents the number 
     ...     ...             ...            ...              ...    ...
     CORO2B  6.57            7.55           10.3             ...    3.7
 
-Users are required to execute the skip-gram.py to generate motif feature vectors for transcription factors. This script takes a transcription factor motif annotation file as input, generates motif feature vectors for transcription factors and stores them in the TF_motif_dim_50_iter_9.txt file. 
+Users need to execute the skip-gram.py to generate motif feature vectors for transcription factors. This script takes a transcription factor motif annotation file as input, generates motif feature vectors for transcription factors, and stores them in the TF_motif_dim_50_iter_9.txt file. 
 
 `python skip-gram.py <input_data_directory> <output_data_directory>`  
 
@@ -59,7 +59,7 @@ The transcription factor motif annotation file contains two columns: the first c
      ...       ...           
      MA1483.2  ELF1 
 
-Next，users need to run the gene_motif_generate.py script to generate gene motif feature vectors. The gene_motif_generate.py script combines the previously generated motif feature vectors for target genes (motif_50.csv) and the motif feature vectors of transcription factors (TF_motif_dim_50_iter_9.txt) to generate gene motif feature vectors, which are then stored in the gene_exp.csv file.
+Next, users need to run the gene_motif_generate.py script to generate gene motif feature vectors. The gene_motif_generate.py script combines the previously generated motif feature vectors for target genes (motif_50.csv) and the motif feature vectors of transcription factors (TF_motif_dim_50_iter_9.txt) to generate gene motif feature vectors, which are then stored in the gene_exp.csv file.
 
  `python gene_motif_generate.py`
 
@@ -73,7 +73,7 @@ Users are required to execute the Input_generate.py script to generate the input
 
 `python Input_generate.py`
 
-Users are required to execute the data_generate.py script to generate the training and testing data for DSSM. The Input_generate.py script generates the model's training and testing data based on the ChIP-seq-network file, as well as the expression feature vectors (gene_exp.csv) and motif feature vectors (gene_motif.csv). The generated datas are stored in the train.csv and test.csv files.
+Users are required to execute the data_generate.py script to generate the training and testing data for DSSM. The Input_generate.py script generates the model's training and testing data based on the ChIP-seq-network file, as well as the expression feature vectors (gene_exp.csv) and motif feature vectors (gene_motif.csv). The generated data are stored in the train.csv and test.csv files.
 
 `python data_generate.py`
 
@@ -96,11 +96,11 @@ Users are required to execute the main.py script to train the DSSM model and gen
 
 ### Similarity calculation
 
-The Similarity calculation.py script takes the embeddings for transcription factors and target genes(TF_emb.csv and TG_emb.csv), which are output by the DSSM model, as input. The Similarity calculation.py script calculates the cosine similarity between each transcription factor and target gene as a measure of their regulatory relationship. The script then outputs a transcription factor-target gene score matrix, which is stored in the cosine_similarity_matrix.csv file.
+The Similarity calculation.py script takes the embeddings for transcription factors and target genes(TF_emb.csv and TG_emb.csv), which are output by the DSSM model as input. The Similarity calculation.py script calculates the cosine similarity between each transcription factor and target gene to measure their regulatory relationship. The script then outputs a transcription factor-target gene score matrix stored in the cosine_similarity_matrix.csv file. 
 
 `python Similarity calculation.py`
 
-The size of the transcription factor-target gene score matrix is T x Z, where T represents the number of target genes and Z represents the number of transcription factors. The format of transcription factor-target gene score matrix is as follows:
+The transcription factor-target gene score matrix size is T x Z, where T represents the number of target genes, and Z represents the number of transcription factors. The format of the transcription factor-target gene score matrix is as follows: 
 
     	A1BG                A2M                ...        A4GALT             AAAS
     ABCF2   -0.639341676        -0.85210057        ...        0.745066691        0.778953056
@@ -117,9 +117,9 @@ The Regulon generation.py script takes the cosine_similarity_matrix.csv file as 
 
 ### AUCell
 
-The AUCell.R script takes the scRNA-seq file and regulon files as input. Users are required to specify the path to the scRNA-seq file and the directory where the regulon files are stored in the AUCell.R script. The script calculates the activity of each regulon in each cell, prioritizes the regulons, and and stores the results in the aucell.csv file.
+The AUCell.R script takes the scRNA-seq file and regulon files as input. Users need to specify the path to the scRNA-seq file and the directory where the regulon files are stored in the AUCell.R script. The script calculates the activity of each regulon in each cell. It prioritizes the regulons to specify the path to the scRNA-seq file and the directory where the regulon files are stored in the AUCell.R script. The script calculates the activity of each regulon in each cell, prioritizes the regulons, and stores the results in the aucell.csv file. 
 
-The aucell.csv file stores the activity of regulons, with columns representing cells and the values indicating the activity of each regulon in the corresponding cell. The last two columns of the file represent the average activity of each regulon across all cells and the prioritization of regulons, respectively. The format is as follows:
+The aucell.csv file stores the activity of regulons, with columns representing cells and values indicating the activity of each regulon in the corresponding cell. The last two columns of the file represent the average activity of each regulon across all cells and the prioritization of regulons, respectively. The format is as follows: 
 
                      HSC            HSC.1          HSC.2                 HSC.2322       mean           prioritize
     APEX2.txt        0.021637216    0.021673278    0.042481067    ...    0.020122611    0.039571616    ZBED1.txt

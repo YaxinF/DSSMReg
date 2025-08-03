@@ -1,5 +1,6 @@
 The transcription factor motif annotation data and the gene_motif_score_matrix data can be obtained from the cisTarget database. https://resources.aertslab.org/cistarget/
 
-Triple-negative breast cancer single-cell RNA-seq data can be obtained from the GEO database. GSE145926
+Triple-negative breast cancer single-cell RNA-seq data can be obtained from the GEO database. GSE148673
 
 The single-cell RNA-seq data for two human bone marrow hematopoietic stem cells can be obtained from the GEO database,  the accession numbers GSE253355 and GSE219015.
+
